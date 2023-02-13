@@ -28,6 +28,8 @@
         var sys_id = current.getValue("sys_id");
         var subcategory = current.getValue("subcategory");
         var state = current.getValue("state");
+        
+        // Build JSON Body
 
         var obj = {
             "number": number,
