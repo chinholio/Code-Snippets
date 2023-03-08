@@ -1,5 +1,6 @@
 # Learning to make a sample keylogger
 # Thank you TechwithTim https://www.youtube.com/watch?v=TbMKwl11itQ
+# Windows doesnt like it so it must be working :D
 
 import pynput
 
