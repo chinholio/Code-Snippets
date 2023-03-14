@@ -1,3 +1,5 @@
+# PyGame Tutorial from Youtube: Clear Code channel https://www.youtube.com/watch?v=AY9MnQ4x3zk&t=6960s
+
 import pygame
 from sys import exit
 
