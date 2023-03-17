@@ -37,6 +37,20 @@ def collisions(player,obstacles):
             if player.colliderect(obstacle_rect): return False
     return True
 
+# Function to animate player sprite
+def player_animation():
+    # play walking animation if player on floor
+    # display jumping animation if in air
+    global player_surf, player_index
+
+    if player_rect.bottom  < 300:
+        player_surf = player_jump
+    else:
+        player_index += 0.1
+        if player_index >= len(player_walk):player_index = 0
+        player_surf = player_walk[int(player_index)]
+
+
 
 # starts pygame
 pygame.init()
@@ -57,13 +71,30 @@ ground_surface = pygame.image.load('Python/PyGame Runner/graphics/ground.png').c
 # score_rect = score_surf.get_rect(center = (400,50))
 
 
-# Obstacles
-snail_surf = pygame.image.load('Python/PyGame Runner/graphics/snail/snail1.png').convert_alpha()
-fly_surf = pygame.image.load('Python/PyGame Runner/graphics/Fly/Fly1.png').convert_alpha()
+# Snail
+snail_frame_1 = pygame.image.load('Python/PyGame Runner/graphics/snail/snail1.png').convert_alpha()
+snail_frame_2 = pygame.image.load('Python/PyGame Runner/graphics/snail/snail2.png').convert_alpha()
+snail_frames = [snail_frame_1,snail_frame_2]
+snail_frame_index = 0
+snail_surf = snail_frames[snail_frame_index]
+
+# Fly
+fly_frame_1 = pygame.image.load('Python/PyGame Runner/graphics/Fly/Fly1.png').convert_alpha()
+fly_frame_2 = pygame.image.load('Python/PyGame Runner/graphics/Fly/Fly2.png').convert_alpha()
+fly_frames = [fly_frame_1,fly_frame_2]
+fly_frame_index = 0
+fly_surf = fly_frames[fly_frame_index]
 
 obstacle_rect_list = []
 
-player_surf = pygame.image.load('Python/PyGame Runner/graphics/player/player_walk_1.png').convert_alpha()
+# In game player images
+player_walk_1 = pygame.image.load('Python/PyGame Runner/graphics/player/player_walk_1.png').convert_alpha()
+player_walk_2 = pygame.image.load('Python/PyGame Runner/graphics/player/player_walk_2.png').convert_alpha()
+player_walk = [player_walk_1,player_walk_2]
+player_index = 0
+player_jump = pygame.image.load('Python/PyGame Runner/graphics/player/jump.png').convert_alpha()
+
+player_surf = player_walk[player_index]
 player_rect = player_surf.get_rect(midbottom = (80,300))
 player_gravity = 0
 
@@ -81,9 +112,15 @@ game_message = test_font.render(f'Press Space to Run.', False, (111,196,169))
 game_message_rect = game_message.get_rect(center = (400,340))
 
 
-# Timer
+# Timers
 obstacle_timer = pygame.USEREVENT + 1
 pygame.time.set_timer(obstacle_timer,1500)
+
+snail_animation_timer = pygame.USEREVENT + 2
+pygame.time.set_timer(snail_animation_timer,500)
+
+fly_animation_timer = pygame.USEREVENT + 2
+pygame.time.set_timer(fly_animation_timer,200)
 
 
 while True:
@@ -100,17 +137,26 @@ while True:
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE and player_rect.bottom == 300:
                     player_gravity = -20
+
+            if event.type == obstacle_timer:
+                if randint(0,2):
+                    obstacle_rect_list.append(snail_surf.get_rect(bottomright = (randint(900,1100),300)))
+                else:
+                    obstacle_rect_list.append(fly_surf.get_rect(bottomright = (randint(900,1100),150)))
+            
+            if event.type == snail_animation_timer:
+                if snail_frame_index == 0: snail_frame_index = 1
+                else: snail_frame_index = 0
+                snail_surf = snail_frames[snail_frame_index]
+            
+            if event.type == fly_animation_timer:
+                if fly_frame_index == 0: fly_frame_index = 1
+                else: fly_frame_index = 0
+                fly_surf = fly_frames[fly_frame_index]
         else:
             if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 game_active = True
                 start_time = pygame.time.get_ticks()
-
-        if event.type == obstacle_timer and game_active:
-            if randint(0,2):
-                obstacle_rect_list.append(snail_surf.get_rect(bottomright = (randint(900,1100),300)))
-            else:
-                obstacle_rect_list.append(fly_surf.get_rect(bottomright = (randint(900,1100),150)))
-
 
 
     if game_active:
@@ -126,6 +172,7 @@ while True:
         player_gravity += 1
         player_rect.y += player_gravity
         if player_rect.bottom >= 300: player_rect.bottom = 300
+        player_animation()
         screen.blit(player_surf,player_rect)
 
         # PLayer Obstacle Movement
