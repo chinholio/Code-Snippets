@@ -1,0 +1,4 @@
+Hello!
+
+This is a sample mail using a python mail client.
+Beep beep beep.
