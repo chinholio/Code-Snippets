@@ -1,6 +1,6 @@
 import pygame
 from tiles import Tile
-from settings import tile_size
+from settings import tile_size, screen_width
 from player import Player
 
 class Level:
@@ -32,11 +32,11 @@ class Level:
         player_x = player.rect.centerx
         direction_x = player.direction.x
 
-        if player_x < 200:
+        if player_x < screen_width / 4 and direction_x < 0:
             self.world_shift = 8
             player.speed = 0
         
-        elif player_x > 1000:
+        elif player_x > screen_width - (screen_width / 4) and direction_x > 0:
             self.world_shift = -8
             player.speed = 0
 
@@ -52,3 +52,4 @@ class Level:
         # Player Sprite
         self.player.update()
         self.player.draw(self.display_surface)
+        self.scroll_x()
