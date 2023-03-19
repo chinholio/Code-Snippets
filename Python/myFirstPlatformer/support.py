@@ -1,7 +1,7 @@
 import pygame
 from os import walk
 
-def import_folder(full_path):
+def import_folder(path):
 
     surface_list = []
     
