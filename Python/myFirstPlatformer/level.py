@@ -12,7 +12,7 @@ class Level:
         self.world_shift = 0
         self.current_x = 0
 
-        # dust
+        # dust 
         self.dust_sprite = pygame.sprite.GroupSingle()
         self.player_on_ground = False
 
@@ -24,13 +24,13 @@ class Level:
 
         jump_particle_sprite = ParticleEffect(pos, 'jump')
         self.dust_sprite.add(jump_particle_sprite)
-
+    # Variables to determine if player on ground. Used to determine dust particle generation when landing
     def get_player_on_ground(self):
         if self.player.sprite.on_ground:
             self.player_on_ground = True
         else:
             self.player_on_ground = False
-
+    # Generation of dust when player lands on ground
     def create_landing_dust(self):
         if not self.player_on_ground and self.player.sprite.on_ground and not self.dust_sprite.sprites():
             if self.player.sprite.facing_right:
