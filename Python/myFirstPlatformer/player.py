@@ -72,8 +72,6 @@ class Player(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(topleft = self.rect.topleft)
         elif self.on_ceiling:
             self.rect = self.image.get_rect(midtop = self.rect.midtop)
-        else:
-            self.rect = self.image.get_rect(center = self.rect.center)
         
     def run_dust_animation(self):
         if self.status == 'run' and self.on_ground:
@@ -104,6 +102,7 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
         # Jumping movement
+        
         if keys[pygame.K_SPACE] and self.on_ground:
             self.jump()
             self.create_jump_particles(self.rect.midbottom)
@@ -112,14 +111,14 @@ class Player(pygame.sprite.Sprite):
         if self.direction.y < 0:
             self.status = 'jump'
         
-        elif self.direction.y > 0.9:
+        elif self.direction.y > 1:
             self.status = 'fall'
 
-        elif self.direction.x != 0:
-            self.status = 'run'
-        
         else:
-            self.status = 'idle'
+            if self.direction.x != 0:
+                self.status = 'run'
+            else:
+                self.status = 'idle'
             
 
     def apply_gravity(self):
