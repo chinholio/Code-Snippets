@@ -3,25 +3,82 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "level_data/level_0.tmx",
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "level_data/level_0.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 878.6666666666665,
+                "y": 290.6666666666667
+            }
+        },
+        "tilesets/coin_tiles.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "tilesets/crates.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/enemies_tiles.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/grass.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "tilesets/palms.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "tilesets/setup_tiles.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
+        "tilesets/terrain_tiles.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        }
     },
-    "last.imagePath": "D:/Development/Code-Snippets/Code-Snippets/Python/myFirstPlatformer/graphics/coins",
+    "last.exportedFilePath": "D:/Development/Code-Snippets/Code-Snippets/Python/myFirstPlatformer/levels/0",
+    "last.imagePath": "D:/Development/Code-Snippets/Code-Snippets/Python/myFirstPlatformer/graphics/enemy",
     "map.height": 11,
+    "map.lastUsedExportFilter": "CSV files (*.csv)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 64,
     "map.tileWidth": 64,
     "map.width": 60,
     "openFiles": [
+        "level_data/level_0.tmx",
+        "tilesets/terrain_tiles.tsx",
+        "tilesets/coin_tiles.tsx",
+        "tilesets/grass.tsx",
+        "tilesets/palms.tsx",
+        "tilesets/crates.tsx",
+        "tilesets/setup_tiles.tsx",
+        "tilesets/enemies_tiles.tsx"
     ],
     "project": "myFirstPlatformer.tiled-project",
     "recentFiles": [
+        "tilesets/enemies_tiles.tsx",
+        "tilesets/setup_tiles.tsx",
+        "tilesets/crates.tsx",
+        "tilesets/palms.tsx",
+        "tilesets/grass.tsx",
+        "tilesets/coin_tiles.tsx",
+        "tilesets/terrain_tiles.tsx",
+        "level_data/level_0.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 64,
         "width": 64
-    }
+    },
+    "tileset.type": 0
 }
